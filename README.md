@@ -1,7 +1,3 @@
-No problem! Here is the full version of the `README.md` with all necessary information about the project’s internationalization setup, using dynamic folders, and examples for translation handling. The content is formatted as plain text with markdown for proper display in Git repositories, and it is designed as a boilerplate that anyone can use.
-
----
-
 # Multilingual Next.js Boilerplate with next-intl
 
 This project is a multilingual web application built using **Next.js** and **next-intl** for internationalization. It supports dynamic loading of translation files for both pages and components, making it easy to extend the app without manually updating routing logic. The project currently supports three languages and can be extended further.
@@ -16,17 +12,18 @@ This project is a multilingual web application built using **Next.js** and **nex
 - [Running the Project](#running-the-project)
 - [License](#license)
 
+
 ## Overview
 
-This project uses **next-intl** for managing translations across pages and components. It dynamically loads the appropriate translation files based on the locale and provides a flexible structure for easily managing translations.
+This project uses **next-intl** for managing translations across pages and components. It dynamically loads the appropriate translation files based on the locale and provides a flexible structure for easily managing translations. Additionally, **Tailwind CSS** is used for styling, and **ShadCN** is integrated for UI components, providing a robust foundation for rapid development and consistent design.
 
 ### Features:
 - **Dynamic Translation Loading**: Translations for both pages and components are automatically loaded from JSON files.
 - **Easy to Add New Languages**: To add a new language, just add new translation files to the appropriate directories.
 - **Graceful Fallbacks**: If translation files are missing, the app logs a warning and continues without crashing.
 - **Extensible Structure**: New pages, components, or translations can be added without updating the routing logic.
-
-## Internationalization Setup
+- **Tailwind CSS for Styling**: A utility-first CSS framework that allows for rapid UI development with a responsive and mobile-first design approach.
+- **ShadCN for UI Components**: ShadCN provides a set of accessible, customizable, and composable components for building modern UIs with ease.
 
 This project is designed to support multiple languages dynamically, with translation files stored in structured JSON format. The folder structure for translations is separated into **global**, **pages**, and **components**.
 
@@ -217,7 +214,3 @@ npm run dev
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
-
----
-
-This `README.md` can now be used as a boilerplate for your multilingual Next.js projects using `next-intl`. Let me know if you need any more changes!
