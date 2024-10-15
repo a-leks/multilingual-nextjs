@@ -20,7 +20,6 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
-
 export default function Navbar() {
   const t = useTranslations('navbar');
   const locale = useLocale(); // Get current locale
@@ -58,6 +57,7 @@ export default function Navbar() {
             MultiLingual
           </Link>
 
+          {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-4">
             <NavigationMenu>
               <NavigationMenuList>
@@ -105,14 +105,48 @@ export default function Navbar() {
             </Button>
           </div>
 
-          <Button
-            variant="outline"
-            size="icon"
-            className="md:hidden"
-            onClick={toggleMenu}
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
+          {/* Mobile View: Language & Theme Toggler with Hamburger */}
+          <div className="md:hidden flex items-center space-x-4">
+            {/* Mobile Language Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="icon">
+                  {locale.toUpperCase()} {/* Reflect the current locale in the button */}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {['en', 'et', 'ru'].map((lang) => (
+                  <DropdownMenuItem
+                    key={lang}
+                    onClick={() => handleLanguageChange(lang)}
+                    className={locale === lang ? 'font-bold text-primary' : ''}
+                  >
+                    {lang.toUpperCase()}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Mobile Theme Toggle */}
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            >
+              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <span className="sr-only">Toggle theme</span>
+            </Button>
+
+            {/* Hamburger Menu Button */}
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={toggleMenu}
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
+          </div>
         </div>
 
         {isMenuOpen && (
@@ -127,38 +161,6 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
-            <div className="flex items-center justify-between py-2 px-4">
-              {/* Mobile Language Dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" size="sm">
-                    {locale.toUpperCase()} {/* Reflect the current locale in the button */}
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  {['en', 'et', 'ru'].map((lang) => (
-                    <DropdownMenuItem
-                      key={lang}
-                      onClick={() => handleLanguageChange(lang)}
-                      className={locale === lang ? 'font-bold text-primary' : ''}
-                    >
-                      {lang.toUpperCase()}
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              {/* Mobile Theme Toggle */}
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              >
-                <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                <span className="sr-only">Toggle theme</span>
-              </Button>
-            </div>
           </div>
         )}
       </div>
