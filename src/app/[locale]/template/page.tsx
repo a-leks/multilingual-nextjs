@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import Template from '@/app/components/Template';
 
-export default function HomePage() {
+export default function TemplatePage() {
   const t = useTranslations('TemplatePage');
 
   return (

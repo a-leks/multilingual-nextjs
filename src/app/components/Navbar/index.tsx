@@ -42,9 +42,9 @@ export default function Navbar() {
   const navItems = [
     { href: "/", label: t('home') },
     { href: "/about", label: t('about') },
-    { href: "/services", label: t('services') },
-    { href: "/contact", label: t('contact') },
-    { href: "/testimonials", label: t('testimonials') },
+    { href: "/template", label: t('services') },
+    { href: "/template", label: t('contact') },
+    { href: "/template", label: t('testimonials') },
   ];
 
   if (!mounted) return null;
