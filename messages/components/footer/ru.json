@@ -1,19 +1,4 @@
 {
-  "company": "Компания",
-  "partners": "Партнеры",
-  "blog": "Блог",
-  "team": "Команда",
-  "careers": "Вакансии",
-  "resources": "Ресурсы",
-  "contact": "Контакт",
-  "support": "Поддержка",
-  "docs": "Документы",
-  "pricing": "Цены",
-  "about": "О компании",
-  "terms": "Условия",
-  "license": "Лицензия",
-  "privacy": "Конфиденциальность",
-  "aboutUs": "О нас",
-  "footerDescription": "Lorem Ipsum является стандартным текстом для заполнения с 1500-х годов.",
+  "footerDescription": "Lorem Ipsum является стандартным текстом-рыбой с 1500-х годов.",
   "rightsReserved": "Все права защищены."
 }

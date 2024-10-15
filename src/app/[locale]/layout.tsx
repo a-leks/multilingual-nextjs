@@ -15,16 +15,18 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body>
+    <html lang={locale} className="h-full">
+      <body className="flex flex-col min-h-full">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider attribute="class">
-            <div suppressHydrationWarning={true}>
-              <Navbar /> {/* Include Navbar */}
-              {children} {/* Render the rest of the content */}
+            <div className="flex flex-col min-h-screen">
+              <Navbar />
+              <main className="flex-grow container mx-auto px-3">
+                {children} 
+              </main>
+              <Footer />
             </div>
           </ThemeProvider>
-        <Footer />
         </NextIntlClientProvider>
       </body>
     </html>
