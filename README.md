@@ -1,84 +1,83 @@
 # Multilingual Next.js Boilerplate with next-intl
 
-This project is a multilingual web application built using **Next.js** and **next-intl** for internationalization. It dynamically loads translation files for pages and components, and uses **Tailwind CSS** and **ShadCN** for styling and UI components. The project currently supports three languages (English, Estonian, and Russian) but can be extended easily.
+This project is a multilingual web application built using **Next.js** and **next-intl** for internationalization. It supports dynamic loading of translation files for both pages and components, making it easy to extend the app without manually updating routing logic. The project currently supports three languages and can be extended further.
 
 ## Table of Contents
 - [Overview](#overview)
 - [Internationalization Setup](#internationalization-setup)
 - [Folder Structure](#folder-structure)
 - [Adding New Translations](#adding-new-translations)
-- [Adding a New Locale](#adding-a-new-locale)
-- [Component Examples](#component-examples)
+- [Example Translation Files](#example-translation-files)
+- [Usage Examples](#usage-examples)
 - [Running the Project](#running-the-project)
+- [Adding or Changing Locales](#adding-or-changing-locales)
+- [Development Guidelines](#development-guidelines)
+- [Testing](#testing)
+- [Continuous Integration and Deployment](#continuous-integration-and-deployment)
+- [Known Issues and Troubleshooting](#known-issues-and-troubleshooting)
+- [Contributing](#contributing)
 - [License](#license)
 
 ## Overview
 
-This project uses **next-intl** to manage translations across pages and components. It dynamically loads appropriate translation files based on the user’s locale and provides a flexible structure for easily managing translations. Additionally, **Tailwind CSS** is used for styling, and **ShadCN** for UI components, providing a foundation for rapid development and consistent design.
+This project uses **next-intl** for managing translations across pages and components. It dynamically loads the appropriate translation files based on the locale and provides a flexible structure for easily managing translations. Additionally, **Tailwind CSS** is used for styling, and **ShadCN** is integrated for UI components, providing a robust foundation for rapid development and consistent design.
 
-### Key Features:
-- **Dynamic Translation Loading**: Both page and component translations are dynamically loaded from JSON files.
-- **Simple to Extend**: Adding new languages, pages, or components is straightforward.
-- **Graceful Fallbacks**: Missing translation files won't break the app; warnings are logged instead.
-- **Integrated UI Components**: Components from **ShadCN** provide accessible and composable building blocks for modern UIs.
-- **Theme Toggle Support**: Built-in support for light/dark themes with a toggle switch that remembers the user's choice.
+### Features:
+- **Dynamic Translation Loading**: Translations for both pages and components are automatically loaded from JSON files.
+- **Easy to Add New Languages**: To add a new language, just add new translation files to the appropriate directories.
+- **Graceful Fallbacks**: If translation files are missing, the app logs a warning and continues without crashing.
+- **Extensible Structure**: New pages, components, or translations can be added without updating the routing logic.
+- **Tailwind CSS for Styling**: A utility-first CSS framework that allows for rapid UI development with a responsive and mobile-first design approach.
+- **ShadCN for UI Components**: ShadCN provides a set of accessible, customizable, and composable components for building modern UIs with ease.
+
+## Internationalization Setup
+
+This project is designed to support multiple languages dynamically, with translation files stored in structured JSON format. The application automatically detects the user's locale and loads the appropriate translation files from the `messages` directory.
 
 ### Supported Locales:
 - `en`: English
 - `et`: Estonian
 - `ru`: Russian
 
-## Internationalization Setup
-
-Internationalization (i18n) is handled through **next-intl**. The project uses dynamic imports to load translation files based on the user's locale. Translation files for both **pages** and **components** are placed in the `/messages` folder.
-
 ## Folder Structure
 
-```bash
-├── messages
-│   ├── components
-│   │   ├── navbar
-│   │   │   ├── en.json
-│   │   │   ├── et.json
-│   │   │   └── ru.json
-│   │   ├── footer
-│   │   │   ├── en.json
-│   │   │   ├── et.json
-│   │   │   └── ru.json
-│   ├── pages
-│   │   ├── HomePage
-│   │   │   ├── en.json
-│   │   │   ├── et.json
-│   │   │   └── ru.json
-│   │   ├── AboutPage
-│   │   │   ├── en.json
-│   │   │   ├── et.json
-│   │   │   └── ru.json
-├── src
-│   ├── app
-│   │   ├── components
-│   │   │   ├── Navbar.tsx
-│   │   │   ├── Footer.tsx
-│   │   └── [locale]
-│   │       ├── about
-│   │       └── HomePage
+Translations are organized under the `messages` directory, with separate subdirectories for **global**, **pages**, and **components**.
+
 ```
-
-### How It Works
-
-1. **Dynamic Page and Component Translation**: The app automatically detects the current locale and loads the appropriate translation files for the page and components.
-2. **Language Toggling**: Users can switch between supported languages via a dropdown in the navigation bar.
-3. **Graceful Fallback**: Missing translation files log a warning but don't crash the app.
+messages
+├── global
+│   ├── en.json
+│   ├── et.json
+│   └── ru.json
+├── pages
+│   ├── HomePage
+│   │   ├── en.json
+│   │   ├── et.json
+│   │   └── ru.json
+│   ├── AboutPage
+│   │   ├── en.json
+│   │   ├── et.json
+│   │   └── ru.json
+├── components
+│   ├── navbar
+│   │   ├── en.json
+│   │   ├── et.json
+│   │   └── ru.json
+│   ├── footer
+│   │   ├── en.json
+│   │   ├── et.json
+│   │   └── ru.json
+```
 
 ## Adding New Translations
 
 ### 1. Adding a New Page
 
-To add a new page translation (e.g., `ContactPage`):
+To add translations for a new page (e.g., `ContactPage`):
 1. Create a new folder under `messages/pages` named `ContactPage`.
-2. Add the required JSON translation files:
+2. Add translation files for each locale:
 
-```bash
+```
 messages
 ├── pages
 │   ├── ContactPage
@@ -87,22 +86,23 @@ messages
 │   │   └── ru.json
 ```
 
-3. Example `ContactPage/en.json`:
+3. Each JSON file should include the necessary keys and translations for that page.
 
+**Example `ContactPage/en.json`:**
 ```json
 {
   "title": "Contact Us",
-  "description": "Feel free to reach out using the form below."
+  "description": "Get in touch with us via the form below."
 }
 ```
 
 ### 2. Adding a New Component
 
-For a new component (e.g., `header`):
+To add translations for a new component (e.g., `header`):
 1. Create a new folder under `messages/components` named `header`.
-2. Add the required JSON translation files:
+2. Add translation files for each locale:
 
-```bash
+```
 messages
 ├── components
 │   ├── header
@@ -111,148 +111,77 @@ messages
 │   │   └── ru.json
 ```
 
-3. Example `header/en.json`:
+3. Each JSON file should include the necessary keys and translations for that component.
 
+**Example `header/en.json`:**
 ```json
 {
-  "welcome": "Welcome to our website"
+  "welcomeMessage": "Welcome to our website"
 }
 ```
 
-## Adding a New Locale
+## Example Translation Files
 
-To add a new language to the project, you will need to update a few parts of the codebase:
-
-### 1. Update `routing.ts`
-
-In `routing.ts`, add the new locale to the `locales` array and adjust the default locale if necessary:
-
-```tsx
-import {defineRouting} from 'next-intl/routing';
-import {createSharedPathnamesNavigation} from 'next-intl/navigation';
- 
-export const routing = defineRouting({
-  // A list of all locales that are supported
-  locales: ['en', 'et', 'ru', 'new-locale'], // Add your new locale here
- 
-  // Used when no locale matches
-  defaultLocale: 'en'
-});
- 
-// Lightweight wrappers around Next.js' navigation APIs
-// that will consider the routing configuration
-export const {Link, redirect, usePathname, useRouter} =
-  createSharedPathnamesNavigation(routing);
+### HomePage Example (`HomePage/en.json`)
+```json
+{
+  "title": "Welcome to the homepage",
+  "about": "Learn more about us"
+}
 ```
 
-### 2. Create Translation Files
-
-For the new locale to be reflected in the app, you need to create the corresponding translation files in the `/messages` folder for both **pages** and **components**. Each translation file should follow the naming convention of the locale code.
-
-Example: If you’re adding a locale for `es` (Spanish), create the following structure:
-
-```bash
-messages
-├── components
-│   ├── navbar
-│   │   ├── es.json
-│   ├── footer
-│   │   ├── es.json
-├── pages
-│   ├── HomePage
-│   │   ├── es.json
-│   ├── AboutPage
-│   │   ├── es.json
-```
-
-Each `es.json` file should contain the translated strings for that specific locale.
-
-Example `navbar/es.json`:
+### Navbar Component Example (`navbar/en.json`)
 ```json
 {
   "menu": {
-    "home": "Inicio",
-    "about": "Acerca de"
+    "home": "Home",
+    "about": "About"
   }
 }
 ```
 
-### 3. Update Any Language-Specific Logic (Optional)
+## Usage Examples
 
-If your app includes any locale-specific logic (such as date formatting or currency display), make sure to update those sections to handle the new locale appropriately.
+### 1. Loading Translations in a Page
 
-### 4. Test the Locale
+When creating a new page (e.g., `HomePage`), translations are loaded dynamically based on the current locale:
 
-After adding the locale in `routing.ts` and the translation files in `messages`, run the project and switch to the new locale using the language toggler to verify that everything works as expected.
-
-### Summary of Changes Needed:
-- Add the locale to `routing.ts`.
-- Create the appropriate translation files in `messages`.
-- Adjust any locale-specific logic in the project (if applicable).
-
-
-
-## Component Examples
-
-### Minimal Component Example
-
-Here’s an example of a minimal component using translations. This serves as a template for how translations are loaded dynamically:
-
-```tsx
+```javascript
 import { useTranslations } from 'next-intl';
 
-export default function MinimalComponent() {
-  const t = useTranslations('minimal');
+export default function HomePage() {
+  const t = useTranslations('HomePage');
 
   return (
-    <div className="bg-white dark:bg-gray-900 p-4 rounded shadow-lg">
-      <h1 className="text-xl font-bold">{t('title')}</h1>
-      <p>{t('text')}</p>
-      <a href="/about" className="text-indigo-600 hover:underline">
-        {t('about')}
-      </a>
+    <div>
+      <h1>{t('title')}</h1>
+      <p>{t('about')}</p>
     </div>
   );
 }
 ```
 
-### Navbar with Language & Theme Toggling
+### 2. Loading Translations in a Component
 
-The following example shows how translations and theme toggling are handled in the **Navbar** component:
+Similarly, for components (e.g., `navbar`), translations are loaded based on the component name and locale:
 
-```tsx
-import { useTranslations, useLocale } from 'next-intl';
-import { useTheme } from 'next-themes';
-import { Link } from '@/i18n/routing';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
+```javascript
+import { useTranslations } from 'next-intl';
+import { Link } from 'next/link';
 
 export default function Navbar() {
   const t = useTranslations('navbar');
-  const { theme, setTheme } = useTheme();
-  const locale = useLocale();
-
-  const handleLanguageChange = (lang: string) => {
-    // Replace the current language in the URL with the new one
-  };
 
   return (
-    <nav className="bg-background/95 sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link href="/" className="text-xl font-bold">MultiLingual</Link>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button>{locale.toUpperCase()}</button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            {['en', 'et', 'ru'].map((lang) => (
-              <DropdownMenuItem key={lang} onClick={() => handleLanguageChange(lang)}>
-                {lang.toUpperCase()}
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
-        <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>Toggle Theme</button>
-      </div>
+    <nav>
+      <ul>
+        <li>
+          <Link href="/">{t('menu.home')}</Link>
+        </li>
+        <li>
+          <Link href="/about">{t('menu.about')}</Link>
+        </li>
+      </ul>
     </nav>
   );
 }
@@ -262,7 +191,7 @@ export default function Navbar() {
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/multilingual-nextjs.git
+git clone https://github.com/a-leks/multilingual-nextjs.git
 cd multilingual-nextjs
 ```
 
@@ -276,10 +205,88 @@ npm install
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) to see the app in action.
+4. Open [http://localhost:3000](http://localhost:3000) to see the app.
+
+## Adding or Changing Locales
+
+To add a new locale or change an existing one, update the `routing.ts` file. The locale must be added to the `locales` array:
+
+```typescript
+import {defineRouting} from 'next-intl/routing';
+import {createSharedPathnamesNavigation} from 'next-intl/navigation';
+
+export const routing = defineRouting({
+  // A list of all locales that are supported
+  locales: ['en', 'et', 'ru'],
+
+  // Used when no locale matches
+  defaultLocale: 'en'
+});
+
+// Lightweight wrappers around Next.js' navigation APIs
+// that will consider the routing configuration
+export const {Link, redirect, usePathname, useRouter} =
+  createSharedPathnamesNavigation(routing);
+```
+
+Additionally, you need to add the corresponding translation files in the `messages` folder. For example, to add `fr` (French):
+1. Add `fr.json` in the appropriate directories under `messages` (e.g., `messages/global/fr.json`, `messages/pages/HomePage/fr.json`).
+2. Update the `routing.ts` to include `'fr'` in the `locales` array.
+
+## Development Guidelines
+
+When contributing to this project, ensure the following:
+- Follow the ESLint rules configured in the project (`.eslintrc.json`).
+- Follow the folder structure and naming conventions for adding new pages, components, or translations.
+- Use the `useTranslations` hook from `next-intl` for loading translations in both pages and components.
+- For translations, make sure all language files are updated (e.g., `en.json`, `et.json`, `ru.json`, etc.).
+
+### Running Linting
+Before submitting any PR, ensure your code passes ESLint:
+```bash
+npm run lint
+```
+
+This will check for any syntax or formatting issues in your code.
+
+## Testing
+
+To ensure that everything works as expected, run the tests before submitting any code changes.
+
+### Running Unit Tests
+```bash
+npm run test
+```
+
+## Continuous Integration and Deployment
+
+This project uses **GitHub Actions** for continuous integration and automatic deployment to **Netlify**.
+
+### GitHub Actions
+The CI pipeline automatically runs the following checks:
+- **Linting**: Runs ESLint to ensure code quality.
+- **Build**: Builds the project to catch any build-time errors.
+
+## Known Issues and Troubleshooting
+
+### Issue: Translations not loading properly
+**Solution**: Ensure that the locale is added in `routing.ts` and the corresponding translation files exist in the `/messages` folder.
+
+### Issue: CSS styles not applying correctly
+**Solution**: Ensure that Tailwind CSS is properly set up by checking the `tailwind.config.ts`
+
+ and making sure the content paths are correct.
+
+## Contributing
+
+We welcome contributions to improve this project! To contribute:
+1. Fork the repository.
+2. Create a new branch for your feature or fix.
+3. Make your changes and ensure they pass the linter.
+4. Submit a pull request with a detailed description of your changes.
+
+For more details, see the [Contribution Guidelines](CONTRIBUTING.md).
 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
-
----
