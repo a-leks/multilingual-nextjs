@@ -41,11 +41,14 @@ export default function Footer() {
           {/* Company Information */}
           <div className="flex-1">
             <div className="max-w-xs">
-              <img src="/logo.svg" alt="Logo" className="w-32" />
+              <h2 className="text-3xl font-sans text-transparent bg-clip-text bg-gradient-to-r from-slate-800 to-black">
+                MultiLingual
+              </h2>
               <p className="mt-2 text-sm">
                 {t('footerDescription')}
               </p>
             </div>
+
           </div>
 
           {/* Navigation Sections */}
@@ -84,7 +87,7 @@ export default function Footer() {
             <a href="javascript:void(0)" className="w-8 h-8 flex items-center justify-center rounded-full border text-blue-700 hover:bg-blue-100">
               {/* Facebook Icon */}
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                <path d="M9.197 21.743h-3.972V12.06H2.301V8.879h2.924V6.777c0-2.708 1.82-4.077 4.225-4.077 1.194 0 2.219.09 2.517.128v2.921h-1.728c-1.357 0-1.623.647-1.623 1.597v2.533h3.293l-.43 3.18h-2.863v9.682z"/>
+                <path d="M9.197 21.743h-3.972V12.06H2.301V8.879h2.924V6.777c0-2.708 1.82-4.077 4.225-4.077 1.194 0 2.219.09 2.517.128v2.921h-1.728c-1.357 0-1.623.647-1.623 1.597v2.533h3.293l-.43 3.18h-2.863v9.682z" />
               </svg>
             </a>
             {/* Add more social icons as needed */}
