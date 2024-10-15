@@ -11,17 +11,16 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  // Providing all messages to the client side based on the locale
   const messages = await getMessages();
 
   return (
     <html lang={locale} className="h-full">
-      <body className="flex flex-col min-h-full">
+      <body className="flex flex-col min-h-screen">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider attribute="class">
             <div className="flex flex-col min-h-screen">
               <Navbar />
-              <main className="flex-grow container mx-auto px-3">
+              <main className="flex-grow container mx-auto px-3 py-4">
                 {children} 
               </main>
               <Footer />
